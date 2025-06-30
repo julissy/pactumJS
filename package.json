@@ -24,7 +24,8 @@
     "trouter": "^2.0.1"
   },
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha test.js",
+    "test2":"mocha ./fakeRESTapi/activities.js"
   },
   "author": "",
   "license": "ISC",
