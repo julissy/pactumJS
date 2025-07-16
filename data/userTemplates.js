@@ -1,12 +1,25 @@
 const { stash } = require('pactum');
 const { faker } = require('@faker-js/faker');
 
+
 stash.addDataTemplate({
-    'ACTIVITIES': {
-        id: faker.number.int({ min: 0, max: 15 }),
-        title: 'Activity' + faker.number.int({min:0, max:20}),
-        dueDate: faker.date.recent(),
-        completed: faker.datatype.boolean()
+    'newUser': {
+        nome: faker.person.firstName(),
+        email: faker.internet.email({provider: 'teste.com' }),
+        password: faker.internet.password({ length: 6, prefix: 'test' }),
+        administrador: "true"
     }
 });
-console.log('Template ACTIVITIES carregado!');
+
+function newUserGenerate () {
+    return {
+        nome: faker.person.firstName(),
+        email: faker.internet.email({provider: 'teste.com' }),
+        password: faker.internet.password({ length: 6, prefix: 'test' }),
+        administrador: "true"
+    };
+};
+
+module.exports = {
+    newUserGenerate
+};
