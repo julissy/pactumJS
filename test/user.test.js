@@ -1,9 +1,12 @@
 const { spec } = require('pactum');
 const { newUserGenerate } = require('../data/userTemplates');
+const { createNewUserSchema } = require('../data/schemaTemplates');
+const Joi = require('joi');
+const baseUrl = process.env.BASE_URL;
 
 it('CT02:Busca usuário', async () => {
     await spec()
-        .get(`https://serverest.dev/usuarios`)
+        .get(`${baseUrl}/usuarios`)
         .withHeaders({
             'Content-Type': 'application/json'
         })
@@ -11,8 +14,8 @@ it('CT02:Busca usuário', async () => {
 });
 
 it('CT03: Criação do usuário', async () => {
-    await spec()
-        .post(`https://serverest.dev/usuarios`)
+    const { json } = await spec()
+        .post(`${baseUrl}/usuarios`)
         .withHeaders({
             'Content-Type': 'application/json'
         })
@@ -23,12 +26,13 @@ it('CT03: Criação do usuário', async () => {
         .expectJsonLike({
             message: "Cadastro realizado com sucesso"
         });
+        Joi.assert(json, createNewUserSchema);
 });
 
 it('CT04: Busca do usuário por id', async() => {
     const newUser = newUserGenerate()
     let { json } = await spec()
-            .post('https://serverest.dev/usuarios')
+            .post(`${baseUrl}/usuarios`)
             .withHeaders({
                 'accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -37,7 +41,7 @@ it('CT04: Busca do usuário por id', async() => {
             .expectStatus(201)
 
         await spec()
-            .get(`https://serverest.dev/usuarios/${json._id}`)
+            .get(`${baseUrl}/usuarios/${json._id}`)
             .expectStatus(200)
             .expectJsonLike({
                 nome: newUser.nome,
@@ -50,7 +54,7 @@ it('CT04: Busca do usuário por id', async() => {
     it('CT05: Exclusão do usuário por id', async() => {
     const newUser = newUserGenerate()
     let { json } = await spec()
-            .post('https://serverest.dev/usuarios')
+            .post(`${baseUrl}/usuarios`)
             .withHeaders({
                 'accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -59,7 +63,7 @@ it('CT04: Busca do usuário por id', async() => {
             .expectStatus(201)
 
         await spec()
-            .delete(`https://serverest.dev/usuarios/${json._id}`)
+            .delete(`${baseUrl}/usuarios/${json._id}`)
             .expectStatus(200)
             .expectJsonLike({
                 message: "Registro excluído com sucesso"

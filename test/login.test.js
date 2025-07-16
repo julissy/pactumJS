@@ -1,9 +1,13 @@
+require('dotenv').config();
+const Joi = require('joi');
 const { spec } = require('pactum');
-require('../data/userTemplates');
+const { loginSchema } = require('../data/schemaTemplates');
 
 it('CT01:Login', async () => {
-    await spec()
-        .post(`https://serverest.dev/login`)
+    const baseUrl = process.env.BASE_URL;
+
+    const { json } = await spec()
+        .post(`${baseUrl}/login`)
         .withHeaders({
             'Content-Type': 'application/json'
         })
@@ -15,6 +19,7 @@ it('CT01:Login', async () => {
         .expectJsonLike({
             "message": "Login realizado com sucesso"
         });
+        Joi.assert(json, loginSchema);
 });
 
 
