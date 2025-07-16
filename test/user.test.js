@@ -47,7 +47,7 @@ it('CT04: Busca do usuário por id', async() => {
             })
     });
 
-    it('CT04: Exclusão do usuário por id', async() => {
+    it('CT05: Exclusão do usuário por id', async() => {
     const newUser = newUserGenerate()
     let { json } = await spec()
             .post('https://serverest.dev/usuarios')
