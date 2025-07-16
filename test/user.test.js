@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { spec } = require('pactum');
 const { newUserGenerate } = require('../data/userTemplates');
 const { createNewUserSchema } = require('../data/schemaTemplates');

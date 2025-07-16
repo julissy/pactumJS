@@ -20,6 +20,9 @@ jobs:
 
         - name: Install Dependencies
           run: npm install
+        
+        - name: Definir BASE_URL a partir do secret
+          run: echo "BASE_URL=${{ secrets.BASE_URL }}" >> $GITHUB_ENV
 
         - name: Test e Report
           run: npm run test
