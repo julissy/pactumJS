@@ -1,50 +1,47 @@
-# pactumJS
+# qa.automationexercise-api.pactumjs
 
-Estudos sobre [pactumJS](https://pactumjs.github.io/)
+Este projeto utiliza [pactumJS](https://pactumjs.github.io/) para automação de testes na aplicação [ServeRest](https://serverest.dev/)
 
-Este repositório contém exemplos, experimentos e estudos sobre o uso do pactumJS para automação de testes de APIs em JavaScript.
+## Tecnologias Utilizadas
 
-## Sobre o Projeto
+- **[pactumJS](https://pactumjs.github.io/):** Framework principal para automação de testes de API.
+- **[Joi](https://joi.dev/):** Utilizada para validação de contratos das respostas das APIs.
+- **[mocha](https://mochajs.org/):** Framework de execução dos testes.
+- **[mochawesome](https://www.npmjs.com/package/mochawesome):** Gerador de relatórios dos testes.
 
-O objetivo deste projeto é explorar e documentar boas práticas, recursos e formas de integrar o pactumJS em diferentes cenários de testes automatizados, incluindo:
+## Requisitos
 
-- Criação de testes de API simples e complexos
-- Execução de testes automatizados em pipelines CI/CD
-- Uso de pactumJS com frameworks populares de teste em JavaScript
-- Demonstração de validação de contratos e respostas de APIs
+- [Node.js](https://nodejs.org/) versão 14 ou superior
+- [npm](https://www.npmjs.com/) (normalmente já incluso com o Node.js)
 
-## O que é pactumJS?
+## Como instalar e executar o projeto
 
-pactumJS é uma ferramenta poderosa para automação de testes de APIs REST, HTTP e GraphQL, permitindo escrita de testes legíveis, extensíveis e fáceis de manter.
-
-Saiba mais na [documentação oficial](https://pactumjs.github.io/).
-
-## Como usar este projeto
-
-1. Clone este repositório:
+1. **Clone este repositório:**
    ```bash
-   git clone https://github.com/julissy/pactumJS.git
+   git clone https://github.com/julissy/qa.automationexercise-api.pactumjs.git
+   cd qa.automationexercise-api.pactumjs
    ```
-2. Instale as dependências necessárias:
+
+2. **Instale as dependências necessárias:**
    ```bash
    npm install
    ```
-3. Para executar qualquer script definido no `package.json`, utilize:
-   ```bash
-   npm run nome-do-script
-   ```
-   Por exemplo, para rodar um script de testes:
+
+3. **Execute os testes de API e contrato:**
    ```bash
    npm run test
    ```
+   Isso irá rodar todos os arquivos de teste localizados em `./test/*.test.js` utilizando o Mocha e gerar o relatório com o Mochawesome.
+
+4. **Visualize o relatório dos testes:**
+   Após a execução dos testes, abra o relatório HTML gerado:
+   ```bash
+   npm run report:open
+   ```
+   Isso abrirá automaticamente o arquivo `mochawesome-report/mochawesome.html` no navegador padrão.
 
 ## Exemplos
 
-- Testes básicos de requisições HTTP
-- Validação de contratos de resposta
-- Integração com pipelines CI/CD *(em breve)*
-
-## Referências
-
-- [pactumJS Documentation](https://pactumjs.github.io/)
-- [GitHub do pactumJS](https://github.com/pactumjs/pactum)
+- Testes básicos de requisições HTTP usando o ServeRest.dev
+- Validação de contratos das respostas com Joi
+- Relatórios visuais de resultados dos testes
